@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: "{{ include "relaynet-internet-gateway.fullname" . }}-test-connection"
   labels:
-    {{- include "relaynet-internet-gateway.labels" . | nindent 4 }}
+    {{- include "relaynet-internet-gateway.labels" (merge (dict "Component" "test") .) | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:

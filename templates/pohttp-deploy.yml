@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   name: {{ include "relaynet-internet-gateway.fullname" . }}
   labels:
-    {{- include "relaynet-internet-gateway.labels" . | nindent 4 }}
+    {{- include "relaynet-internet-gateway.labels" (merge (dict "Component" "pohttp") .) | nindent 4 }}
 spec:
 {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
 {{- end }}
   selector:
     matchLabels:
-      {{- include "relaynet-internet-gateway.selectorLabels" . | nindent 6 }}
+      {{- include "relaynet-internet-gateway.selectorLabels" (merge (dict "Component" "pohttp") .) | nindent 6 }}
   template:
     metadata:
     {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "relaynet-internet-gateway.selectorLabels" . | nindent 8 }}
+        {{- include "relaynet-internet-gateway.selectorLabels" (merge (dict "Component" "pohttp") .) | nindent 8 }}
     spec:
       serviceAccountName: {{ include "relaynet-internet-gateway.serviceAccountName" . }}
       securityContext:
