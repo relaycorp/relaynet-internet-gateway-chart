@@ -5,8 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository: docker.pkg.github.com/relaycorp/relaynet-internet-gateway/main
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
