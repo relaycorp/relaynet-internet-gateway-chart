@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "required": [
+    "mongo",
+    "nats",
+    "vault"
+  ],
+  "properties": {
+    "mongo": {
+      "type": "object",
+      "required": [
+        "uri"
+      ],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "nats": {
+      "type": "object",
+      "required": [
+        "serverUrl",
+        "clusterId"
+      ],
+      "properties": {
+        "serverUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "clusterId": {
+          "type": "string"
+        }
+      }
+    },
+    "objectStore": {
+      "type": "object",
+      "required": [
+        "endpoint",
+        "bucket",
+        "accessKeyId",
+        "secretKey"
+      ],
+      "properties": {
+        "endpoint": {
+          "type": "string"
+        },
+        "bucket": {
+          "type": "string"
+        },
+        "accessKeyId": {
+          "type": "string"
+        },
+        "secretKey": {
+          "type": "string"
+        },
+        "tlsEnabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "vault": {
+      "type": "object",
+      "required": [
+        "serverUrl",
+        "token",
+        "kvPrefix"
+      ],
+      "properties": {
+        "serverUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "token": {
+          "type": "string"
+        },
+        "kvPrefix": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

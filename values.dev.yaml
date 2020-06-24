@@ -1,0 +1,17 @@
+mongo:
+  uri: mongodb://mongo-test.default.svc.cluster.local/test_db
+
+nats:
+  serverUrl: nats://nats-test.default.svc.cluster.local:4222
+  clusterId: test-cluster
+
+objectStore:
+  endpoint: minio-test.default.svc.cluster.local:9000
+  bucket: relaynet-public-gateway
+  accessKeyId: THE-KEY-ID
+  secretKey: letmeinpls
+  tlsEnabled: false
+
+vault:
+  serverUrl: http://vault-test.default.svc.cluster.local:8200
+  token: letmein

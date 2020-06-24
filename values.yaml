@@ -77,3 +77,15 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# Backing services
+
+mongo: {}
+
+nats: {}
+
+objectStore:
+  tlsEnabled: true
+
+vault:
+  kvPrefix: gw-keys
