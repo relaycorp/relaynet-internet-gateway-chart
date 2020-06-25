@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "relaynet-internet-gateway.fullname" . }}
+  name: {{ include "relaynet-internet-gateway.fullname" . }}-pohttp
   labels:
     {{- include "relaynet-internet-gateway.labels" (merge (dict "Component" "pohttp") .) | nindent 4 }}
 spec:
@@ -20,15 +20,24 @@ spec:
       labels:
         {{- include "relaynet-internet-gateway.selectorLabels" (merge (dict "Component" "pohttp") .) | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "relaynet-internet-gateway.serviceAccountName" . }}
+      serviceAccountName: {{ include "relaynet-internet-gateway.serviceAccountName" . }}-pohttp
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      shareProcessNamespace: true
       containers:
-        - name: {{ .Chart.Name }}
+        - name: pohttp
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:v{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: IfNotPresent
+          command:
+            - node
+            - /opt/gw/build/main/bin/pohttp-server.js
+          envFrom:
+            - configMapRef:
+                name: {{ include "relaynet-internet-gateway.fullname" . }}
+            - secretRef:
+                name: {{ include "relaynet-internet-gateway.fullname" . }}
           ports:
             - name: http
               containerPort: 8080

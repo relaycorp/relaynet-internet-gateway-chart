@@ -2,7 +2,7 @@ mongo:
   uri: mongodb://mongo-test.default.svc.cluster.local/test_db
 
 nats:
-  serverUrl: nats://nats-test.default.svc.cluster.local:4222
+  serverUrl: nats://example-nats.default.svc.cluster.local:4222
   clusterId: test-cluster
 
 objectStore:

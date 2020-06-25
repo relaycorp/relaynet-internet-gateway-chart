@@ -27,3 +27,21 @@ Here's how to set up your local environment for development:
      pong-test \
      .
    ```
+
+1. Install NATS Streaming: https://github.com/nats-io/nats-streaming-operator
+1. Install Mongo:
+   ```
+   helm repo add bitnami https://charts.bitnami.com/bitnami
+   helm install mongo-test bitnami/mongodb
+   ```
+1. Install Minio:
+   ```
+   helm install \
+       --name minio-test \
+       --set accessKey=THE-KEY-ID,secretKey=letmeinpls \
+       stable/minio
+   ```
+1. Install gw:
+   ```
+   helm install --values values.dev.yaml gw-test .
+   ```
