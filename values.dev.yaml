@@ -1,5 +1,5 @@
 mongo:
-  uri: mongodb://mongo-test.default.svc.cluster.local/test_db
+  uri: mongodb://mongo-test-mongodb.default.svc.cluster.local/test_db
 
 nats:
   serverUrl: nats://example-nats.default.svc.cluster.local:4222
