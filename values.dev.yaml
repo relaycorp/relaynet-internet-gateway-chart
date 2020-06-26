@@ -1,9 +1,11 @@
+pohttpAddress: http://gw-test-relaynet-internet-gateway-pohttp.default.svc.cluster.local:8080
+
 mongo:
   uri: mongodb://mongo-test-mongodb.default.svc.cluster.local/test_db
 
 nats:
   serverUrl: nats://example-nats.default.svc.cluster.local:4222
-  clusterId: test-cluster
+  clusterId: example-stan
 
 objectStore:
   endpoint: minio-test.default.svc.cluster.local:9000

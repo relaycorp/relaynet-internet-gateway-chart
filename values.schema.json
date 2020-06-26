@@ -2,11 +2,16 @@
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
   "required": [
+    "pohttpAddress",
     "mongo",
     "nats",
     "vault"
   ],
   "properties": {
+    "pohttpAddress": {
+      "type": "string",
+      "format": "uri"
+    },
     "mongo": {
       "type": "object",
       "required": [
