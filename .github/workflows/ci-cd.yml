@@ -11,21 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Run chart-testing (lint)
-      id: lint
-      uses: helm/chart-testing-action@v1.0.0-rc.1
-      with:
-        command: lint
-        config: /values.dev.yml
-
-    - name: Create kind cluster
-      uses: helm/kind-action@v1.0.0-rc.1
-
-    - name: Run chart-testing (install)
-      uses: helm/chart-testing-action@v1.0.0-rc.1
-      with:
-        command: install
-        config: /values.dev.yml
+    - name: Validate Helm chart
+      uses: igabaydulin/helm-check-action@0.1.5
+      env:
+        CHART_LOCATION: .
+        CHART_VALUES: ./values.dev.yml
 
 #    - name: Set up Terraform
 #      uses: volcano-coffee-company/setup-terraform@v1
