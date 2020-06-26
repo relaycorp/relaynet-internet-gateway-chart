@@ -31,5 +31,5 @@ Here's how to set up your local environment for development:
    ```
 1. Install gw:
    ```
-   helm install --values values.dev.yaml gw-test .
+   helm install --values values.dev.yml gw-test .
    ```
