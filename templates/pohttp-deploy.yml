@@ -32,7 +32,7 @@ spec:
           imagePullPolicy: IfNotPresent
           command:
             - node
-            - /opt/gw/build/main/bin/pohttp-server.js
+            - build/main/bin/pohttp-server.js
           envFrom:
             - configMapRef:
                 name: {{ include "relaynet-internet-gateway.fullname" . }}
