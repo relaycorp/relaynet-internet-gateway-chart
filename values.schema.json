@@ -2,12 +2,21 @@
   "$schema": "http://json-schema.org/schema#",
   "type": "object",
   "required": [
+    "gatewayKeyId",
+    "cogrpcAddress",
     "pohttpAddress",
     "mongo",
     "nats",
     "vault"
   ],
   "properties": {
+    "gatewayKeyId": {
+      "type": "string"
+    },
+    "cogrpcAddress": {
+      "type": "string",
+      "format": "uri"
+    },
     "pohttpAddress": {
       "type": "string",
       "format": "uri"
