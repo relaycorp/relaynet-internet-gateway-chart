@@ -5,8 +5,3 @@ provider "google" {
 
   version = "~> 3.27"
 }
-
-resource "google_project" "main" {
-  name       = var.gcp_project_id
-  project_id = var.gcp_project_id
-}
