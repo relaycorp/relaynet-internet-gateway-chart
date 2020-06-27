@@ -22,3 +22,15 @@ resource "mongodbatlas_cluster" "main" {
   provider_instance_size_name = "M10"
   provider_region_name        = "EUROPE_WEST_2"
 }
+
+resource "mongodbatlas_database_user" "main" {
+  username           = "gw"
+  password           = var.mongodb_user_password
+  project_id         = mongodbatlas_project.main.id
+  auth_database_name = "admin"
+
+  roles {
+    role_name     = "readWrite"
+    database_name = var.mongodb_db_name
+  }
+}
