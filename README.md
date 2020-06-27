@@ -14,7 +14,7 @@ Here's how to set up your local environment for development:
        --set "server.dev.enabled=true" \
        --set "server.image.extraEnvironmentVars.VAULT_DEV_ROOT_TOKEN_ID=letmein"
    
-   kubectl exec -it vault-test-0 -- vault secrets enable -path=pong-keys kv-v2
+   kubectl exec -it vault-test-0 -- vault secrets enable -path=gw-keys kv-v2
    ```
 1. Install NATS Streaming: https://github.com/nats-io/nats-streaming-operator
 1. Install Mongo:

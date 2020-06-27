@@ -26,9 +26,6 @@ Apart from the Kubernetes and GCP resources created by the chart, this Terraform
    git clone https://github.com/relaycorp/relaynet-internet-gateway-chart.git
    cd relaynet-internet-gateway-chart/example
    ```
-
-## Install
-
 1. Configure MongoDB Atlas:
    1. [Generate API keys](https://docs.atlas.mongodb.com/tutorial/manage-programmatic-access/index.html) (Organization Project Creator, Organization Member).
    1. Define them as environment variables:
@@ -36,3 +33,39 @@ Apart from the Kubernetes and GCP resources created by the chart, this Terraform
       export MONGODB_ATLAS_PUBLIC_KEY=<PUBLIC-KEY>
       export MONGODB_ATLAS_PRIVATE_KEY=<PRIVATE-KEY>
       ```
+
+## Install
+
+We'll create the GCP resources first so we can then create the Kubernetes resources in the newly-created cluster.
+
+To create the GCP resources, run:
+
+```
+terraform init
+terraform apply
+```
+
+The commands above require about 10 minutes to complete. Once the GCP resources are available, it's time to create the Kubernetes resources. First, download the credentials for the newly-created cluster; e.g.:
+
+```
+gcloud container clusters get-credentials relaynet-gateway-example \
+    --zone europe-west2-a \
+    --project public-gw
+```
+
+1. Install Vault in development mode (not recommended in production) and enable the KV secret store:
+   ```
+   # Add HashiCorp's repo if you haven't done so yet
+   helm repo add hashicorp https://helm.releases.hashicorp.com
+   
+   helm install vault-test hashicorp/vault \
+       --set "server.dev.enabled=true" \
+       --set "server.image.extraEnvironmentVars.VAULT_DEV_ROOT_TOKEN_ID=letmein"
+   
+   kubectl exec -it vault-test-0 -- vault secrets enable -path=gw-keys kv-v2
+   ```
+1. Install NATS Streaming: https://github.com/nats-io/nats-streaming-operator
+1. Get an initial Helm values file from the Terraform module by running:
+   ```
+   terraform output helm_values > values.yml
+   ```

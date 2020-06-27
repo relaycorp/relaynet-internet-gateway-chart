@@ -24,7 +24,7 @@ resource "google_container_node_pool" "primary" {
   name       = "relaynet-gateway-example"
   location   = google_container_cluster.primary.location
   cluster    = google_container_cluster.primary.name
-  node_count = 2
+  node_count = 3
 
   node_config {
     machine_type = "n1-standard-1"
