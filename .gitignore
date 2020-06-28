@@ -1,4 +1,5 @@
-.terraform
-.terraform.tfstate.lock*
-terraform.tfvars
-terraform.tfstate*
+example/.terraform
+example/.terraform.tfstate.lock*
+example/terraform.tfvars
+example/terraform.tfstate*
+example/values.yml

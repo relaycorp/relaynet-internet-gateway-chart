@@ -65,7 +65,21 @@ gcloud container clusters get-credentials relaynet-gateway-example \
    kubectl exec -it vault-test-0 -- vault secrets enable -path=gw-keys kv-v2
    ```
 1. Install NATS Streaming: https://github.com/nats-io/nats-streaming-operator
-1. Get an initial Helm values file from the Terraform module by running:
-   ```
-   terraform output helm_values > values.yml
-   ```
+1. Install the gateway chart:
+   1. Get an initial Helm values file from the Terraform module by running:
+      ```
+      terraform output helm_values > values.yml
+      ```
+   1. Update `values.yml`
+   1. Install the chart:
+      ```
+      helm install --values values.yml gw-test \
+          https://github.com/relaycorp/relaynet-internet-gateway-chart/archive/master.tar.gz
+      ```
+
+Subsequent changes to `values.yml` can be applied with:
+
+```
+helm upgrade --values values.yml gw-test \
+          https://github.com/relaycorp/relaynet-internet-gateway-chart/archive/master.tar.gz
+```
