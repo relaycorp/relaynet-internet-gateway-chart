@@ -55,5 +55,5 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Create the name of the service account to use
 */}}
 {{- define "relaynet-internet-gateway.serviceAccountName" -}}
-{{- default (include "relaynet-internet-gateway.fullname" .) .Values.serviceAccount.name }}
+{{- include "relaynet-internet-gateway.fullname" . }}
 {{- end }}
