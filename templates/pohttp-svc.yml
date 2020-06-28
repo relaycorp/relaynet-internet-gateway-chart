@@ -4,6 +4,10 @@ metadata:
   name: {{ include "relaynet-internet-gateway.fullname" . }}-pohttp
   labels:
     {{- include "relaynet-internet-gateway.labels" (merge (dict "Component" "pohttp") .) | nindent 4 }}
+  {{- with .Values.service.annotations }}
+  annotations:
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
