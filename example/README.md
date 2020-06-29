@@ -48,7 +48,7 @@ terraform apply
 The commands above require about 10 minutes to complete. Once the GCP resources are available, it's time to create the Kubernetes resources. First, download the credentials for the newly-created cluster; e.g.:
 
 ```
-gcloud container clusters get-credentials relaynet-gateway-example \
+gcloud container clusters get-credentials gateway-example \
     --zone europe-west2-a \
     --project public-gw
 ```
@@ -62,9 +62,12 @@ gcloud container clusters get-credentials relaynet-gateway-example \
        --set "server.dev.enabled=true" \
        --set "server.image.extraEnvironmentVars.VAULT_DEV_ROOT_TOKEN_ID=letmein"
    
+   # Check when the pod vault-test-0 is ready:
+   kubectl get pod vault-test-0
+   # Configure Vault when the pod is ready:
    kubectl exec -it vault-test-0 -- vault secrets enable -path=gw-keys kv-v2
    ```
-1. Install NATS Streaming: https://github.com/nats-io/nats-streaming-operator
+1. [Install NATS Streaming](https://github.com/nats-io/nats-streaming-operator).
 1. Install the gateway chart:
    1. Get an initial Helm values file from the Terraform module by running:
       ```
@@ -72,6 +75,15 @@ gcloud container clusters get-credentials relaynet-gateway-example \
       ```
    1. Update `values.yml`:
       - Add the username and password to the `mongo.uri`.
+      - Set `pohttpHost` to the domain to be used by PoHTTP.
+   1. Create a GCP Managed Certificate:
+      ```
+      terraform output gke_managed_certificate | kubectl apply -f -
+      ```
+   1. Update your DNS to make the domains in the certificate point to the GCP global IP associated with the managed certificate. Run the following to get the IP address:
+      ```
+      terraform output gcp_global_ip
+      ```
    1. Install the chart:
       ```
       helm install --values values.yml gw-test \

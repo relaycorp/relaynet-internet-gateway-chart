@@ -1,5 +1,6 @@
 resource "google_container_cluster" "primary" {
-  name = "relaynet-gateway-example"
+  name = "gateway-${var.environment_name}"
+  min_master_version = "1.16.9-gke.6"
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default

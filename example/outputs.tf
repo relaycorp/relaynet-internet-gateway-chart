@@ -22,7 +22,8 @@ ingress:
   apiVersion: networking.k8s.io/v1beta1
   annotations:
     kubernetes.io/ingress.global-static-ip-name: ${google_compute_global_address.managed_tls_cert.name}
-    networking.gke.io/managed-certificates: ${google_compute_managed_ssl_certificate.main.name}
+    networking.gke.io/managed-certificates: gateway-${var.environment_name}
+  enableTls: true
 
 service:
   annotations:
@@ -49,5 +50,21 @@ objectStore:
 vault:
   serverUrl: http://vault-test.default.svc.cluster.local:8200
   token: letmein
+EOF
+}
+
+output "gcp_global_ip" {
+  value = google_compute_global_address.managed_tls_cert.address
+}
+
+output "gke_managed_certificate" {
+  value = <<EOF
+apiVersion: networking.gke.io/v1beta2
+kind: ManagedCertificate
+metadata:
+  name: gateway-${var.environment_name}
+spec:
+  domains:
+    - ${var.pohttpHost}
 EOF
 }
