@@ -22,6 +22,9 @@
         },
         "apiVersion": {
           "type": "string"
+        },
+        "enableTls": {
+          "type": "boolean"
         }
       }
     },

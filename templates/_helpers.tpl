@@ -55,7 +55,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Generate PoHTTP URI
 */}}
 {{- define "relaynet-internet-gateway.pohttpUri" -}}
-http{{ ternary "s" "" (and .Values.ingress.enabled (not (empty .Values.ingress.tls))) }}://{{ .Values.pohttpHost }}
+http{{ ternary "s" "" (and .Values.ingress.enabled (not .Values.ingress.enableTls)) }}://{{ .Values.pohttpHost }}
 {{- end }}
 
 {{/*
