@@ -55,14 +55,14 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Generate PoHTTP URI
 */}}
 {{- define "relaynet-internet-gateway.pohttpUri" -}}
-http{{ ternary "s" "" (and .Values.ingress.enabled (not .Values.ingress.enableTls)) }}://{{ .Values.pohttpHost }}
+http{{ ternary "s" "" (and .Values.ingress.enabled .Values.ingress.enableTls) }}://{{ .Values.pohttpHost }}
 {{- end }}
 
 {{/*
 Generate CogRPC URI
 */}}
 {{- define "relaynet-internet-gateway.cogrpcUri" -}}
-http{{ ternary "s" "" (and .Values.ingress.enabled (not .Values.ingress.enableTls)) }}://{{ .Values.cogrpcHost }}
+http{{ ternary "s" "" (and .Values.ingress.enabled .Values.ingress.enableTls) }}://{{ .Values.cogrpcHost }}
 {{- end }}
 
 {{/*
