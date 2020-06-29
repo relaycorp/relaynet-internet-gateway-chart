@@ -45,6 +45,19 @@
     "gatewayKeyId": {
       "type": "string"
     },
+    "cogrpc": {
+      "type": "object",
+      "properties": {
+        "serviceAnnotations": {
+          "type": "object",
+          "properties": {
+            "annotations": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
     "cogrpcHost": {
       "type": "string"
     },

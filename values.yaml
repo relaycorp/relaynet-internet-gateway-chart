@@ -67,6 +67,11 @@ tolerations: []
 
 affinity: {}
 
+# Gateway
+
+cogrpc:
+  serviceAnnotations: {}
+
 # Backing services
 
 mongo: {}

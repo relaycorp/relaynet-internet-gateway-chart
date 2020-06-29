@@ -4,7 +4,7 @@ metadata:
   name: {{ include "relaynet-internet-gateway.fullname" . }}-cogrpc
   labels:
     {{- include "relaynet-internet-gateway.labels" (merge (dict "Component" "cogrpc") .) | nindent 4 }}
-  {{- with .Values.service.annotations }}
+  {{- with .Values.cogrpc.serviceAnnotations }}
   annotations:
   {{- toYaml . | nindent 4 }}
   {{- end }}

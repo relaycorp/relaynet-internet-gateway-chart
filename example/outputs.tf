@@ -33,7 +33,12 @@ service:
 
 gatewayKeyId: MTM1NzkK
 pohttpHost: ${var.pohttpHost}
+
 cogrpcHost: ${var.cogrpcHost}
+cogrpc:
+  serviceAnnotations:
+    cloud.google.com/app-protocols: '{"grpc":"HTTP2"}'
+    cloud.google.com/neg: '{"ingress": true}'
 
 mongo:
   uri: ${lookup(mongodbatlas_cluster.main.connection_strings[0], "private_srv", mongodbatlas_cluster.main.mongo_uri)}/test_db
