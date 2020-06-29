@@ -1,6 +1,5 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName :=  include "relaynet-internet-gateway.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
 apiVersion: {{ .Values.ingress.apiVersion }}
 kind: Ingress
 metadata:
@@ -23,15 +22,10 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ .Values.pohttpHost | quote }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ . }}
-            backend:
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
-          {{- end }}
-    {{- end }}
+          - backend:
+              serviceName: {{ $fullName }}-pohttp
+              servicePort: http
   {{- end }}

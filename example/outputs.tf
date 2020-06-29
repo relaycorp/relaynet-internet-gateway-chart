@@ -27,6 +27,7 @@ ingress:
 service:
   annotations:
     cloud.google.com/neg: '{"ingress": true}'
+  type: NodePort
 
 gatewayKeyId: MTM1NzkK
 pohttpHost: ${var.pohttpHost}

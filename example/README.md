@@ -70,7 +70,8 @@ gcloud container clusters get-credentials relaynet-gateway-example \
       ```
       terraform output helm_values > values.yml
       ```
-   1. Update `values.yml`
+   1. Update `values.yml`:
+      - Add the username and password to the `mongo.uri`.
    1. Install the chart:
       ```
       helm install --values values.yml gw-test \

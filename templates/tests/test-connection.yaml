@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "relaynet-internet-gateway.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "relaynet-internet-gateway.fullname" . }}-pohttp:8080']
   restartPolicy: Never
