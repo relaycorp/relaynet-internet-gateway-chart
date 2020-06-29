@@ -59,6 +59,13 @@ http{{ ternary "s" "" (and .Values.ingress.enabled (not .Values.ingress.enableTl
 {{- end }}
 
 {{/*
+Generate CogRPC URI
+*/}}
+{{- define "relaynet-internet-gateway.cogrpcUri" -}}
+http{{ ternary "s" "" (and .Values.ingress.enabled (not .Values.ingress.enableTls)) }}://{{ .Values.cogrpcHost }}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "relaynet-internet-gateway.serviceAccountName" -}}

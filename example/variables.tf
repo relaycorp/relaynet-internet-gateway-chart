@@ -3,6 +3,7 @@ variable "environment_name" {
 }
 
 variable "pohttpHost" {}
+variable "cogrpcHost" {}
 
 variable "mongodb_atlas_org_id" {}
 variable "mongodb_db_name" {}

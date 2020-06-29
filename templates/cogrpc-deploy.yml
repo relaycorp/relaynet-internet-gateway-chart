@@ -35,7 +35,7 @@ spec:
             - build/main/bin/cogrpc-server.js
           env:
             - name: COGRPC_ADDRESS
-              value: {{ .Values.cogrpcAddress }}
+              value: {{ include "relaynet-internet-gateway.cogrpcUri" . }}
           envFrom:
             - configMapRef:
                 name: {{ include "relaynet-internet-gateway.fullname" . }}

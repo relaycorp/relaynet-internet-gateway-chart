@@ -15,6 +15,7 @@ spec:
   tls:
     - hosts:
       - {{ .Values.pohttpHost | quote }}
+      - {{ .Values.cogrpcHost | quote }}
   {{- end }}
   rules:
     - host: {{ .Values.pohttpHost | quote }}
@@ -23,4 +24,10 @@ spec:
           - backend:
               serviceName: {{ $fullName }}-pohttp
               servicePort: http
+    - host: {{ .Values.cogrpcHost | quote }}
+      http:
+        paths:
+          - backend:
+              serviceName: {{ $fullName }}-cogrpc
+              servicePort: grpc
   {{- end }}

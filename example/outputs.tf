@@ -32,7 +32,7 @@ service:
 
 gatewayKeyId: MTM1NzkK
 pohttpHost: ${var.pohttpHost}
-cogrpcAddress: http://gw-test-relaynet-internet-gateway-pohttp.default.svc.cluster.local:8081
+cogrpcHost: ${var.cogrpcHost}
 
 mongo:
   uri: ${lookup(mongodbatlas_cluster.main.connection_strings[0], "private_srv", mongodbatlas_cluster.main.mongo_uri)}/test_db
@@ -66,5 +66,6 @@ metadata:
 spec:
   domains:
     - ${var.pohttpHost}
+    - ${var.cogrpcHost}
 EOF
 }
