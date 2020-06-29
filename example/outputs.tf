@@ -33,7 +33,7 @@ pohttpHost: ${var.pohttpHost}
 cogrpcAddress: http://gw-test-relaynet-internet-gateway-pohttp.default.svc.cluster.local:8081
 
 mongo:
-  uri: ${lookup(mongodbatlas_cluster.main.connection_strings[0], "standard_srv", mongodbatlas_cluster.main.mongo_uri)}/test_db
+  uri: ${lookup(mongodbatlas_cluster.main.connection_strings[0], "private_srv", mongodbatlas_cluster.main.mongo_uri)}/test_db
 
 nats:
   serverUrl: nats://example-nats.default.svc.cluster.local:4222
