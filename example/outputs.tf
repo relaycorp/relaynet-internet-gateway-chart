@@ -23,6 +23,7 @@ ingress:
   annotations:
     kubernetes.io/ingress.global-static-ip-name: ${google_compute_global_address.managed_tls_cert.name}
     networking.gke.io/managed-certificates: gateway-${var.environment_name}
+    kubernetes.io/ingress.allow-http: "false"
   enableTls: true
 
 service:
