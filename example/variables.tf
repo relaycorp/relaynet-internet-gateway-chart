@@ -2,6 +2,8 @@ variable "environment_name" {
   default = "example"
 }
 
+variable "pohttpHost" {}
+
 variable "mongodb_atlas_org_id" {}
 variable "mongodb_db_name" {}
 variable "mongodb_user_password" {}

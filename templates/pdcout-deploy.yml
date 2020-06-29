@@ -35,7 +35,7 @@ spec:
             - build/main/bin/pdc-outgoing-queue-worker.js
           env:
             - name: POHTTP_ADDRESS
-              value: {{ .Values.pohttpAddress }}
+              value: {{ include "relaynet-internet-gateway.pohttpUri" . }}
             - name: WORKER_ID
               valueFrom:
                 fieldRef:

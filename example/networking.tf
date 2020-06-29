@@ -2,6 +2,20 @@ data "google_compute_network" "main" {
   name = "default"
 }
 
+resource "google_compute_global_address" "managed_tls_cert" {
+  name = "gateway-${var.environment_name}-managed-cert"
+}
+
+resource "google_compute_managed_ssl_certificate" "main" {
+  provider = google-beta
+
+  name = "gateway-${var.environment_name}"
+
+  managed {
+    domains = ["${var.pohttpHost}."]
+  }
+}
+
 resource "google_compute_network_peering" "mongodb_atlas" {
   name         = "mongodb-atlas-peering"
   network      = data.google_compute_network.main.self_link

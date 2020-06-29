@@ -1,5 +1,5 @@
 gatewayKeyId: MTM1NzkK
-pohttpAddress: http://gw-test-relaynet-internet-gateway-pohttp.default.svc.cluster.local:8080
+pohttpHost: gw-test-relaynet-internet-gateway-pohttp.default.svc.cluster.local
 cogrpcAddress: http://gw-test-relaynet-internet-gateway-pohttp.default.svc.cluster.local:8081
 
 mongo:

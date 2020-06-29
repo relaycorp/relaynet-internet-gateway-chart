@@ -1,16 +1,12 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName :=  print (include "relaynet-internet-gateway.fullname" .) "-cogrpc" -}}
+{{- $fullName :=  include "relaynet-internet-gateway.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
-{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
-apiVersion: extensions/v1beta1
-{{- end }}
+apiVersion: {{ .Values.ingress.apiVersion }}
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "relaynet-internet-gateway.labels" (merge (dict "Component" "cogrpc") .) | nindent 4 }}
+    {{- include "relaynet-internet-gateway.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

@@ -4,7 +4,7 @@
   "required": [
     "gatewayKeyId",
     "cogrpcAddress",
-    "pohttpAddress",
+    "pohttpHost",
     "mongo",
     "nats",
     "vault"
@@ -13,11 +13,15 @@
     "ingress": {
       "type": "object",
       "required": [
-        "enabled"
+        "enabled",
+        "apiVersion"
       ],
       "properties": {
         "enabled": {
           "type": "boolean"
+        },
+        "apiVersion": {
+          "type": "string"
         }
       }
     },
@@ -42,9 +46,8 @@
       "type": "string",
       "format": "uri"
     },
-    "pohttpAddress": {
-      "type": "string",
-      "format": "uri"
+    "pohttpHost": {
+      "type": "string"
     },
     "mongo": {
       "type": "object",

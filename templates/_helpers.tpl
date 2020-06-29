@@ -36,7 +36,7 @@ Common labels
 */}}
 {{- define "relaynet-internet-gateway.labels" -}}
 helm.sh/chart: {{ include "relaynet-internet-gateway.chart" . }}
-{{ include "relaynet-internet-gateway.selectorLabels" (merge (dict "Component" "pohttp") .) }}
+{{ include "relaynet-internet-gateway.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -47,8 +47,15 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "relaynet-internet-gateway.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "relaynet-internet-gateway.name" . }}-{{ .Component }}
+app.kubernetes.io/name: {{ include "relaynet-internet-gateway.name" . }}{{ empty .Component | ternary "" (printf "-" .Component) }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Generate PoHTTP URI
+*/}}
+{{- define "relaynet-internet-gateway.pohttpUri" -}}
+http{{ ternary "s" "" (and .Values.ingress.enabled (not (empty .Values.ingress.tls))) }}://{{ .Values.pohttpHost }}
 {{- end }}
 
 {{/*
