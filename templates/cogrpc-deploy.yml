@@ -44,7 +44,7 @@ spec:
             - secretRef:
                 name: {{ include "relaynet-internet-gateway.fullname" . }}
           ports:
-            - name: http
+            - name: grpc
               containerPort: 8080
               protocol: TCP
           livenessProbe:
