@@ -47,14 +47,31 @@ spec:
             - name: grpc
               containerPort: 8080
               protocol: TCP
-          livenessProbe:
-            tcpSocket:
-              port: 8080
-          readinessProbe:
-            tcpSocket:
-              port: 8080
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+        - name: cogrpc-health-check
+          image: salrashid123/grpc_health_proxy:1.0
+          imagePullPolicy: IfNotPresent
+          command:
+            - "/bin/grpc_health_proxy"
+            - "-http-listen-addr"
+            - "0.0.0.0:8081"
+            - "-grpcaddr"
+            - "127.0.0.1:8080"
+            - "-service-name"
+            - "CargoRelay"
+            - "-v"
+            - "10"
+          ports:
+            - name: health-check
+              containerPort: 8081
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: "health-check"
+          readinessProbe:
+            httpGet:
+              port: "health-check"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
