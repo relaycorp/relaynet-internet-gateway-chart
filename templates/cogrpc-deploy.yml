@@ -60,7 +60,7 @@ spec:
           command:
             - "/bin/grpc_health_proxy"
             - "-http-listen-addr"
-            - "0.0.0.0:8081"
+            - "0.0.0.0:8082"
             - "-grpcaddr"
             - "127.0.0.1:8080"
             - "-service-name"
@@ -69,7 +69,7 @@ spec:
             - "10"
           ports:
             - name: health-check
-              containerPort: 8081
+              containerPort: 8082
               protocol: TCP
           livenessProbe:
             httpGet:

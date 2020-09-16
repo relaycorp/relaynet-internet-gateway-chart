@@ -19,7 +19,7 @@ resource "google_compute_firewall" "neg_backend_workaround" {
 
   allow {
     protocol = "tcp"
-    ports    = ["8081"]
+    ports    = ["8082"]
   }
 
   source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]
