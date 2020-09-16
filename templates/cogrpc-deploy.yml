@@ -39,6 +39,8 @@ spec:
             # TODO: Remove debugging
             - name: GRPC_VERBOSITY
               value: DEBUG
+            - name: GRPC_TRACE
+              value: all
           envFrom:
             - configMapRef:
                 name: {{ include "relaynet-internet-gateway.fullname" . }}
