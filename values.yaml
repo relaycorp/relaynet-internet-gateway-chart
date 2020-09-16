@@ -5,9 +5,7 @@
 replicaCount: 1
 
 image:
-  # Use the GitHub Package instead when they get their act together:
-  # https://github.community/t/docker-pull-from-public-github-package-registry-fail-with-no-basic-auth-credentials-error/16358
-  repository: quay.io/relaycorp/relaynet-internet-gateway
+  repository: ghcr.io/relaycorp/relaynet-internet-gateway
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
