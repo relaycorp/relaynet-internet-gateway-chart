@@ -36,6 +36,9 @@ spec:
           env:
             - name: COGRPC_ADDRESS
               value: {{ include "relaynet-internet-gateway.cogrpcUri" . }}
+            # TODO: Remove debugging
+            - name: GRPC_VERBOSITY
+              value: DEBUG
           envFrom:
             - configMapRef:
                 name: {{ include "relaynet-internet-gateway.fullname" . }}
