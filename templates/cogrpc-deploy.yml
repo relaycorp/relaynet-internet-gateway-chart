@@ -50,7 +50,7 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
         - name: cogrpc-health-check
-          image: salrashid123/grpc_health_proxy:1.0
+          image: salrashid123/grpc_health_proxy:1.0.0
           imagePullPolicy: IfNotPresent
           command:
             - "/bin/grpc_health_proxy"
