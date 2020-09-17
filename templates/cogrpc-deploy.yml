@@ -40,7 +40,7 @@ spec:
             - name: GRPC_VERBOSITY
               value: DEBUG
             - name: GRPC_TRACE
-              value: http1
+              value: http
           envFrom:
             - configMapRef:
                 name: {{ include "relaynet-internet-gateway.fullname" . }}
