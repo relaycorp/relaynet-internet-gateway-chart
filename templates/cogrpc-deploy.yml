@@ -59,7 +59,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: HITCH_PARAMS
-              value: "--backend=[127.0.0.1]:8080 --frontend=[*]:443 --alpn-protos=h2"
+              value: "--backend=[127.0.0.1]:8080 --frontend=[*]:443 --alpn-protos=h2 --log-level=2"
             - name: DOMAIN
               value: "127.0.0.1"
           ports:
