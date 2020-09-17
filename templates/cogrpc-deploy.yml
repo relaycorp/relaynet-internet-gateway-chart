@@ -55,7 +55,7 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
         - name: cogrpc-tls-proxy
-          image: zazukoians/hitch:1.5.2
+          image: zazukoians/hitch:1.6.0
           imagePullPolicy: IfNotPresent
           env:
             - name: HITCH_PARAMS
