@@ -41,7 +41,7 @@ cogrpc:
     cloud.google.com/neg: '{"ingress": true}'
 
 mongo:
-  uri: ${lookup(mongodbatlas_cluster.main.connection_strings[0], "private_srv", mongodbatlas_cluster.main.mongo_uri)}/test_db
+  uri: ${lookup(mongodbatlas_cluster.main.connection_strings[0], "private_srv", mongodbatlas_cluster.main.mongo_uri)}/${var.mongodb_db_name}
 
 nats:
   serverUrl: nats://example-nats.default.svc.cluster.local:4222
