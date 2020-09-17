@@ -29,5 +29,5 @@ spec:
         paths:
           - backend:
               serviceName: {{ $fullName }}-cogrpc
-              servicePort: grpc
+              servicePort: cogrpc
   {{- end }}
