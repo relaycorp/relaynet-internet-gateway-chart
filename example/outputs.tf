@@ -37,7 +37,7 @@ pohttpHost: ${var.pohttpHost}
 cogrpcHost: ${var.cogrpcHost}
 cogrpc:
   serviceAnnotations:
-    cloud.google.com/app-protocols: '{"grpc":"HTTP2"}'
+    cloud.google.com/app-protocols: '{"cogrpc":"HTTP2"}'
     cloud.google.com/neg: '{"ingress": true}'
 
 mongo:
