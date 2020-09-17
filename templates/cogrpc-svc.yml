@@ -12,8 +12,8 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: 8081
-      targetPort: grpc
+      targetPort: grpc-tls
       protocol: TCP
-      name: cogrpc-tls
+      name: cogrpc
   selector:
     {{- include "relaynet-internet-gateway.selectorLabels" (merge (dict "Component" "cogrpc") .) | nindent 4 }}
