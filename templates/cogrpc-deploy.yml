@@ -54,6 +54,22 @@ spec:
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+        - name: cogrpc-tls-proxy
+          image: zazukoians/hitch:1.5.2
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: HITCH_PARAMS
+              value: "--backend=[127.0.0.1]:8080 --frontend=[*]:443"
+          ports:
+            - name: cogrpc-tls
+              containerPort: 443
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: "cogrpc-tls"
+          readinessProbe:
+            tcpSocket:
+              port: "cogrpc-tls"
         - name: cogrpc-health-check
           image: salrashid123/grpc_health_proxy:1.0.0
           imagePullPolicy: IfNotPresent
