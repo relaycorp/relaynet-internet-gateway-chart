@@ -89,6 +89,7 @@ gcloud container clusters get-credentials gateway-example \
       helm install --values values.yml gw-test \
           https://github.com/relaycorp/relaynet-internet-gateway-chart/archive/master.tar.gz
       ```
+   1. Follow the post-install notes.
 
 Subsequent changes to `values.yml` can be applied with:
 
