@@ -40,11 +40,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-            # TODO: Remove debugging
-            - name: GRPC_VERBOSITY
-              value: DEBUG
-            - name: GRPC_TRACE
-              value: transport_security,tsi
           envFrom:
             - configMapRef:
                 name: {{ include "relaynet-internet-gateway.fullname" . }}
@@ -71,7 +66,6 @@ spec:
             - "relaynet.cogrpc.CargoRelay"
             - "-grpctls"
             - "-grpc-tls-no-verify"
-            - "--logtostderr=1"
             - "-v"
             - "10"
           ports:
