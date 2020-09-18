@@ -36,6 +36,10 @@ spec:
           env:
             - name: COGRPC_ADDRESS
               value: {{ include "relaynet-internet-gateway.cogrpcUri" . }}
+            - name: SERVER_IP_ADDRESS
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
             # TODO: Remove debugging
             - name: GRPC_VERBOSITY
               value: DEBUG
@@ -54,28 +58,28 @@ spec:
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-        - name: cogrpc-tls-proxy
-          image: zazukoians/hitch:1.6.0
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: HITCH_PARAMS
-              value: "--backend=[127.0.0.1]:8080 --frontend=[*]:443 --alpn-protos=h2 --log-level=2"
-            - name: HITCH_CIPHER
-              value: ECDHE-RSA-AES128-GCM-SHA256
-            - name: DOMAIN
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
-          ports:
-            - name: cogrpc-tls
-              containerPort: 443
-              protocol: TCP
-          livenessProbe:
-            tcpSocket:
-              port: "cogrpc-tls"
-          readinessProbe:
-            tcpSocket:
-              port: "cogrpc-tls"
+{{/*        - name: cogrpc-tls-proxy*/}}
+{{/*          image: zazukoians/hitch:1.6.0*/}}
+{{/*          imagePullPolicy: IfNotPresent*/}}
+{{/*          env:*/}}
+{{/*            - name: HITCH_PARAMS*/}}
+{{/*              value: "--backend=[127.0.0.1]:8080 --frontend=[*]:443 --alpn-protos=h2 --log-level=2"*/}}
+{{/*            - name: HITCH_CIPHER*/}}
+{{/*              value: ECDHE-RSA-AES128-GCM-SHA256*/}}
+{{/*            - name: DOMAIN*/}}
+{{/*              valueFrom:*/}}
+{{/*                fieldRef:*/}}
+{{/*                  fieldPath: status.podIP*/}}
+{{/*          ports:*/}}
+{{/*            - name: cogrpc-tls*/}}
+{{/*              containerPort: 443*/}}
+{{/*              protocol: TCP*/}}
+{{/*          livenessProbe:*/}}
+{{/*            tcpSocket:*/}}
+{{/*              port: "cogrpc-tls"*/}}
+{{/*          readinessProbe:*/}}
+{{/*            tcpSocket:*/}}
+{{/*              port: "cogrpc-tls"*/}}
         - name: cogrpc-health-check
           image: salrashid123/grpc_health_proxy:1.0.0
           imagePullPolicy: IfNotPresent
