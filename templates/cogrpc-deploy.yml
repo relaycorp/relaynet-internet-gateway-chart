@@ -93,6 +93,7 @@ spec:
             - "relaynet.cogrpc.CargoRelay"
             - "-grpctls"
             - "-grpc-tls-no-verify"
+            - "--logtostderr=1"
             - "-v"
             - "10"
           ports:
