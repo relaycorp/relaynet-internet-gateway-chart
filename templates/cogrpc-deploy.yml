@@ -91,6 +91,8 @@ spec:
             - "127.0.0.1:8080"
             - "-service-name"
             - "relaynet.cogrpc.CargoRelay"
+            - "-grpctls"
+            - "-grpc-no-verify"
             - "-v"
             - "10"
           ports:
