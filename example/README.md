@@ -76,9 +76,9 @@ gcloud container clusters get-credentials gateway-example \
    1. Update `values.yml`:
       - Add the username and password to the `mongo.uri`.
       - Set `pohttpHost` to the domain to be used by PoHTTP.
-   1. Create a GCP Managed Certificate:
+   1. Create the GCP CRDs:
       ```
-      terraform output gke_managed_certificate | kubectl apply -f -
+      terraform output gcp_crds | kubectl apply -f -
       ```
    1. Update your DNS to make the domains in the certificate point to the GCP global IP associated with the managed certificate. Run the following to get the IP address:
       ```

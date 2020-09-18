@@ -63,7 +63,7 @@ output "gcp_global_ip" {
   value = google_compute_global_address.managed_tls_cert.address
 }
 
-output "gke_managed_certificate" {
+output "gcp_crds" {
   value = <<EOF
 apiVersion: networking.gke.io/v1beta2
 kind: ManagedCertificate
@@ -73,5 +73,16 @@ spec:
   domains:
     - ${var.pohttpHost}
     - ${var.cogrpcHost}
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: cogrpc
+  labels:
+    project: ${var.gcp_project_id}
+spec:
+  healthCheck:
+    type: HTTP
+    port: 8082
 EOF
 }
