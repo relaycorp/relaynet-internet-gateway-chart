@@ -38,7 +38,9 @@ cogrpcHost: ${var.cogrpcHost}
 cogrpc:
   serviceAnnotations:
     cloud.google.com/app-protocols: '{"cogrpc":"HTTP2"}'
+    service.alpha.kubernetes.io/app-protocols: '{"cogrpc":"HTTP2"}'
     cloud.google.com/neg: '{"ingress": true}'
+    beta.cloud.google.com/backend-config: '{"ports":{"cogrpc":"cogrpc"}, "default": "cogrpc"}'
 
 mongo:
   uri: ${lookup(mongodbatlas_cluster.main.connection_strings[0], "private_srv", mongodbatlas_cluster.main.mongo_uri)}/${var.mongodb_db_name}
