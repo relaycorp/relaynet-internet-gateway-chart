@@ -92,7 +92,7 @@ spec:
             - "-service-name"
             - "relaynet.cogrpc.CargoRelay"
             - "-grpctls"
-            - "-grpc-no-verify"
+            - "-grpc-tls-no-verify"
             - "-v"
             - "10"
           ports:
