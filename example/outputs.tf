@@ -7,6 +7,8 @@ output "mongodb_user_password" {
 
 output "helm_values" {
   value = <<EOF
+proxyRequestIdHeader: X-Cloud-Trace-Context
+
 ingress:
   enabled: true
   apiVersion: networking.k8s.io/v1beta1
