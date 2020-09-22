@@ -45,6 +45,9 @@
     "gatewayKeyId": {
       "type": "string"
     },
+    "proxyRequestIdHeader": {
+      "type": "string"
+    },
     "cogrpc": {
       "type": "object",
       "properties": {

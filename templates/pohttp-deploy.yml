@@ -33,6 +33,11 @@ spec:
           command:
             - node
             - build/main/bin/pohttp-server.js
+          env:
+            {{- if .Values.proxyRequestIdHeader }}
+            - name: REQUEST_ID_HEADER
+              value: {{ .Values.proxyRequestIdHeader | quote }}
+            {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ include "relaynet-internet-gateway.fullname" . }}
