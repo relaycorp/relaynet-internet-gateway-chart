@@ -33,7 +33,7 @@ resource "google_container_node_pool" "primary" {
   name       = "relaynet-gateway-example"
   location   = google_container_cluster.primary.location
   cluster    = google_container_cluster.primary.name
-  node_count = 4
+  node_count = 5
 
   version = google_container_cluster.primary.master_version
 

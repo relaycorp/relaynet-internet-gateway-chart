@@ -67,6 +67,16 @@ gcloud container clusters get-credentials gateway-example \
    # Configure Vault when the pod is ready:
    kubectl exec -it vault-test-0 -- vault secrets enable -path=gw-keys kv-v2
    ```
+1. [Install Minio](https://github.com/minio/charts):
+   ```
+   helm repo add minio https://helm.min.io
+   
+   helm install minio-test minio/minio \
+       --set accessKey=test-key,secretKey=test-secret \
+       --set persistence.size=100Mi \
+       --set buckets[0].name=public-gateway,buckets[0].policy=none \
+       --set resources.requests.memory=500Mi
+   ```
 1. [Install NATS Streaming](https://github.com/nats-io/nats-streaming-operator).
 1. Install the gateway chart:
    1. Get an initial Helm values file from the Terraform module by running:
