@@ -67,6 +67,9 @@
     "pohttpHost": {
       "type": "string"
     },
+    "powebHost": {
+      "type": "string"
+    },
     "mongo": {
       "type": "object",
       "required": [

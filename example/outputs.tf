@@ -26,6 +26,8 @@ service:
 gatewayKeyId: MTM1NzkK
 pohttpHost: ${var.pohttpHost}
 
+powebHost: ${var.powebHost}
+
 cogrpcHost: ${var.cogrpcHost}
 cogrpc:
   serviceAnnotations:

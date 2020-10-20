@@ -1,5 +1,6 @@
 gatewayKeyId: MTM1NzkK
 pohttpHost: gw-test-relaynet-internet-gateway-pohttp.default.svc.cluster.local
+powebHost: gw-test-relaynet-internet-gateway-poweb.default.svc.cluster.local
 cogrpcHost: gw-test-relaynet-internet-gateway-cogrpc.default.svc.cluster.local
 
 mongo:
