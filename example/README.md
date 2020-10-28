@@ -36,7 +36,7 @@ Apart from the Kubernetes and GCP resources created by the chart, this Terraform
 
 ## Install
 
-We'll create the GCP resources first so we can then create the Kubernetes resources in the newly-created cluster.
+We'll create the GCP resources first, so we can then create the Kubernetes resources in the newly-created cluster.
 
 To create the GCP resources, run:
 

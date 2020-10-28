@@ -69,6 +69,7 @@ metadata:
 spec:
   domains:
     - ${var.pohttpHost}
+    - ${var.powebHost}
     - ${var.cogrpcHost}
 ---
 apiVersion: cloud.google.com/v1
