@@ -4,6 +4,7 @@
   "required": [
     "cogrpcHost",
     "pohttpHost",
+    "powebHost",
     "mongo",
     "nats",
     "vault"
