@@ -1,5 +1,9 @@
 # Helm Chart for the Relaynet-Internet Gateway
 
+**NB: This repository is no longer maintained**. The Helm chart is now maintained in the same repo as the app. [Go to new location](https://github.com/relaycorp/relaynet-internet-gateway/tree/master/chart).
+
+---
+
 This Helm chart allows you to deploy the [Relaynet-Internet Gateway](https://docs.relaycorp.tech/relaynet-internet-gateway/) to any Kubernetes-compatible cloud provider.
 
 There's no Helm repository at this point but you can download the chart directly from a [GitHub release](https://docs.relaycorp.tech/relaynet-internet-gateway-chart/releases). Or if you want to use the latest from the `master` branch, use `https://github.com/relaycorp/relaynet-internet-gateway-chart/archive/master.tar.gz`.
